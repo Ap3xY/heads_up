@@ -16,10 +16,6 @@ defmodule HeadsUpWeb.Router do
   end
 
   def scoop(conn, _opts) do
-    answer = ~w(yes No Maybe) |> Enum.random()
-
-    conn = assign(conn, :answer, answer)
-
     IO.inspect(conn)
 
     conn
@@ -29,6 +25,8 @@ defmodule HeadsUpWeb.Router do
     pipe_through :browser
 
     get "/", PageController, :home
+    get "/tips", TipController, :index
+    get "/tips/:id", TipController, :show
   end
 
   # Other scopes may use custom stacks.
